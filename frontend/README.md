@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ateliux Forum — Frontend
 
-## Getting Started
+Réplica em Next.js + React + TypeScript + Tailwind CSS do layout de fórum enviado como referência.
 
-First, run the development server:
+## Estrutura
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```text
+frontend/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── forum/
+│   │   ├── avatar-stack.tsx
+│   │   ├── discussion-card.tsx
+│   │   ├── discussion-list.tsx
+│   │   ├── forum-header.tsx
+│   │   ├── forum-home.tsx
+│   │   ├── forum-sidebar.tsx
+│   │   └── forum-toolbar.tsx
+│   └── ui/
+│       └── icon-button.tsx
+├── content/
+│   └── forum-home.content.ts
+├── public/
+│   ├── avatars/
+│   └── brand/
+├── types/
+│   └── forum.ts
+└── ...arquivos de configuração
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instalação
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copie o conteúdo desta pasta para `C:\Projetos\Blog\frontend`, preservando seu `.git` da raiz do projeto.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+cd C:\Projetos\Blog\frontend
+npm install
+npm run dev
+```
 
-## Learn More
+Abra `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+## Observações
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- A logo principal usa a URL Cloudinary informada no conteúdo.
+- Os avatares são placeholders locais e podem ser substituídos depois.
+- Os textos, categorias e discussões ficam centralizados em `content/forum-home.content.ts`.
+- A UI está pronta para conexão futura com o backend NestJS.
