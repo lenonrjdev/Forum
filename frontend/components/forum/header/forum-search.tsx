@@ -3,10 +3,10 @@ import { Search } from "lucide-react";
 export function ForumSearch() {
   return (
     <label className="relative mx-auto block w-full max-w-[600px]">
-      <span className="sr-only">Search the forum</span>
+      <span className="sr-only">Pesquisar no fórum</span>
       <input
         type="search"
-        placeholder="Search the forum"
+        placeholder="Pesquisar no fórum"
         className="h-10 w-full rounded-[7px] border border-[#e4e8ec] bg-white px-4 pr-11 text-[12px] text-[#263241] outline-none transition placeholder:text-[#aab2bc] focus:border-[#b9c4ce] focus:ring-4 focus:ring-[#eef8fd]"
       />
       <Search

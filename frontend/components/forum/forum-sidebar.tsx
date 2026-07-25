@@ -9,17 +9,17 @@ export function ForumSidebar() {
         type="button"
         className="h-11 w-full rounded-[5px] bg-[#41b7ee] text-[12px] font-semibold text-white shadow-[0_8px_18px_rgba(65,183,238,0.25)] transition hover:bg-[#31abe3] hover:shadow-[0_10px_24px_rgba(65,183,238,0.32)]"
       >
-        Start New Discussion
+        Iniciar nova discussão
       </button>
 
-      <nav className="mt-5" aria-label="Forum navigation">
+      <nav className="mt-5" aria-label="Navegação do fórum">
         <button
           type="button"
           className="flex h-10 w-full items-center justify-between border-b border-[#edf0f3] text-left text-[12px] font-medium text-[#4b9fc4]"
         >
           <span className="flex items-center gap-2.5">
             <MessageSquareText className="size-[15px]" strokeWidth={1.55} />
-            All Discussion
+            Todas as discussões
           </span>
           <Check className="size-3.5 text-[#56c3bd]" strokeWidth={1.8} />
         </button>
@@ -29,7 +29,7 @@ export function ForumSidebar() {
           className="flex h-10 w-full items-center gap-2.5 border-b border-[#edf0f3] text-left text-[12px] font-medium text-[#52606e] transition hover:text-[#263241]"
         >
           <Flag className="size-[15px]" strokeWidth={1.55} />
-          Following
+          Seguindo
         </button>
 
         <div className="mt-4 space-y-1">

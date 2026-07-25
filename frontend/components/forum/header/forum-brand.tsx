@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { forumBrand } from "@/content/forum-home.content";
 
 export function ForumBrand() {
   return (
-    <a
-      href="#"
+    <Link
+      href="/"
       aria-label={forumBrand.name}
       className="flex min-w-0 items-center justify-start"
     >
@@ -17,6 +18,6 @@ export function ForumBrand() {
         priority
         className="h-[51px] w-[108px] object-contain object-left max-md:h-[42px] max-md:w-[89px]"
       />
-    </a>
+    </Link>
   );
 }

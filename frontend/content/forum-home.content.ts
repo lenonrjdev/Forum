@@ -7,26 +7,26 @@ export const forumBrand = {
 };
 
 export const forumCategories: ForumCategory[] = [
-  { id: "faqs", label: "FAQ's", color: "#f6c856" },
-  { id: "off-topic", label: "Off-Topic Chatter", color: "#76d9c6" },
-  { id: "feedback", label: "Feedback", color: "#a99ae9" },
-  { id: "member-spotlight", label: "Member Spotlight", color: "#e16b83" },
-  { id: "introductions", label: "Introductions", color: "#56c8c8" },
-  { id: "announcements", label: "Announcements", color: "#dc6ab0" },
-  { id: "showcase", label: "Showcase", color: "#bfd4dc" },
-  { id: "jobs", label: "Jobs", color: "#c9c89c" },
+  { id: "frontend", label: "Desenvolvimento Web", color: "#55c5d0" },
+  { id: "backend", label: "Backend e Banco", color: "#dd6bb0" },
+  { id: "ai", label: "Inteligência Artificial", color: "#a99ae9" },
+  { id: "design", label: "Design e UX", color: "#f1bd53" },
+  { id: "solutions", label: "Código e Soluções", color: "#72d8c5" },
+  { id: "ateliux", label: "Projetos Ateliux", color: "#e26e84" },
+  { id: "support", label: "Suporte e Dúvidas", color: "#b9d2dc" },
+  { id: "career", label: "Carreira e Mercado", color: "#c9c89c" },
 ];
 
 export const forumDiscussions: ForumDiscussion[] = [
   {
-    id: "introduce-yourself",
-    title: "Introduce Yourself!",
-    author: "Sarah",
+    id: "arquitetura-nextjs-escalavel",
+    title: "Como organizar um projeto Next.js para escalar sem perder clareza",
+    author: "Equipe Ateliux",
     authorAvatar: "/avatars/sarah.svg",
-    publishedAt: "5 minutes ago",
+    publishedAt: "há 5 minutos",
     excerpt:
-      "Hey Everyone, new member alert here! Thought I'd write a bit about myself and why I'm here. First of my name is Sarah and I'm 31 years old, married, fan of...",
-    categoryId: "introductions",
+      "Uma arquitetura prática para separar páginas, domínios, conteúdo e integrações sem transformar o projeto em uma estrutura difícil de manter.",
+    categoryId: "frontend",
     comments: 25,
     featured: true,
     participants: [
@@ -37,14 +37,14 @@ export const forumDiscussions: ForumDiscussion[] = [
     ],
   },
   {
-    id: "member-programme",
-    title: "The 12 month member programme",
-    author: "Mike",
+    id: "nestjs-prisma-base-solida",
+    title: "NestJS e Prisma: uma base sólida para APIs modernas",
+    author: "Equipe Ateliux",
     authorAvatar: "/avatars/mike.svg",
-    publishedAt: "30 minutes ago",
+    publishedAt: "há 30 minutos",
     excerpt:
-      "This is looking great! Quick question, if I already have a membership, can I upgrade it to include the new member perks?",
-    categoryId: "announcements",
+      "Como combinar módulos, serviços, contratos e persistência para construir uma API que possa evoluir junto com o produto.",
+    categoryId: "backend",
     comments: 16,
     featured: true,
     participants: [
@@ -55,14 +55,14 @@ export const forumDiscussions: ForumDiscussion[] = [
     ],
   },
   {
-    id: "what-are-you-working-on",
-    title: "What are you working on?",
-    author: "Simon",
+    id: "agentes-ia-valor-produtos",
+    title: "Agentes de IA: onde realmente geram valor em produtos digitais",
+    author: "Equipe Ateliux",
     authorAvatar: "/avatars/simon.svg",
-    publishedAt: "1 hour ago",
+    publishedAt: "há 1 hora",
     excerpt:
-      "Right now I'm working with this fantastic client who are looking to re-design their forum, currently we've just completed our research phase and moved into...",
-    categoryId: "off-topic",
+      "Uma visão prática sobre automação, contexto, ferramentas e os limites necessários para transformar IA em uma capacidade confiável do produto.",
+    categoryId: "ai",
     comments: 4,
     participants: [
       { name: "Sarah", avatar: "/avatars/sarah.svg" },
@@ -72,14 +72,14 @@ export const forumDiscussions: ForumDiscussion[] = [
     ],
   },
   {
-    id: "airline-app",
-    title: "UI of a new airline app, help needed!",
-    author: "Lena",
+    id: "design-system-momento-certo",
+    title: "Design systems: quando um projeto deve criar o seu",
+    author: "Equipe Ateliux",
     authorAvatar: "/avatars/lena.svg",
-    publishedAt: "3 hours ago",
+    publishedAt: "há 3 horas",
     excerpt:
-      "We're shaping a new airline experience and would love feedback on the latest interface direction before the next design review.",
-    categoryId: "feedback",
+      "Sinais de que a interface precisa deixar de ser um conjunto de telas isoladas e começar a operar como um sistema visual compartilhado.",
+    categoryId: "design",
     comments: 12,
     muted: true,
     participants: [
