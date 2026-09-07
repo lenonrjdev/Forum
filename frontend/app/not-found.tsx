@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { SearchX } from "lucide-react";
+import { ForumHeader } from "@/components/forum/forum-header";
+import { ForumFooter } from "@/components/forum/shared/forum-footer";
+export default function NotFound(){return <div className="min-h-screen bg-white"><ForumHeader /><main className="grid min-h-[calc(100vh-180px)] place-items-center px-4 py-16 text-center"><div><SearchX className="mx-auto size-9 text-[#89949e]" /><p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9aa3ac]">404</p><h1 className="mt-3 font-serif text-[40px] tracking-[-0.035em] text-[#263241]">Essa página não foi encontrada.</h1><p className="mx-auto mt-4 max-w-md text-sm leading-7 text-[#7f8a95]">A discussão pode ter sido removida, o endereço pode ter mudado ou o conteúdo ainda não existe.</p><div className="mt-7 flex justify-center gap-3"><Link href="/" className="rounded-md bg-[#263241] px-5 py-2.5 text-xs font-semibold text-white">Voltar ao fórum</Link><Link href="/search" className="rounded-md border border-[#dce2e6] px-5 py-2.5 text-xs font-semibold text-[#5f6b76]">Pesquisar</Link></div></div></main><ForumFooter /></div>}

@@ -1,0 +1,7 @@
+import { InfoDocument } from "@/components/forum/shared/info-document";
+import { StandardForumPage } from "@/components/forum/shared/standard-forum-page";
+export default function GuidelinesPage(){return <StandardForumPage><InfoDocument eyebrow="Comunidade" title="Diretrizes do Fórum Ateliux" description="Regras simples para manter discussões técnicas úteis, seguras e respeitosas." sections={[
+{title:"Participe com contexto",paragraphs:["Explique o problema, o ambiente e o que já foi tentado. Respostas claras e reproduzíveis ajudam toda a comunidade."],bullets:["mantenha o assunto relacionado à tecnologia;","evite respostas sem contexto;","cite fontes quando uma afirmação depender delas."]},
+{title:"Respeito e segurança",paragraphs:["Discordâncias técnicas são bem-vindas; ataques pessoais não são. Não publique dados privados, credenciais ou materiais que possam colocar pessoas e sistemas em risco."],bullets:["sem assédio ou discriminação;","sem spam ou autopromoção abusiva;","sem credenciais, chaves ou dados privados;","sem conteúdo malicioso ou instruções perigosas."]},
+{title:"Moderação",paragraphs:["Conteúdos podem ser editados, ocultados, fechados ou removidos quando violarem as regras. Denúncias serão analisadas pela equipe responsável."],bullets:["tópicos podem ser movidos de categoria;","discussões podem ser fechadas;","contas podem ser limitadas em casos de abuso recorrente."]}
+]} /></StandardForumPage>}

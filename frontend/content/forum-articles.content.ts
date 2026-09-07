@@ -1,19 +1,32 @@
+import { forumDiscussions, getCategoryById } from "@/content/forum-home.content";
 import type { ForumArticle } from "@/types/article";
 
 const sharedComments = [
   {
     id: "comment-1",
-    author: "Marina Costa",
-    avatar: "/avatars/maya.svg",
+    author: "Usuário Ateliux 01",
+    avatar: "/avatars/user-01.svg",
     publishedAt: "há 18 minutos",
     content:
-      "A separação por domínio fez bastante diferença no nosso projeto. O ponto principal foi manter os componentes próximos da funcionalidade sem transformar cada pasta em um pequeno framework.",
+      "A separação por domínio fez bastante diferença no projeto de teste. O ponto principal foi manter os componentes próximos da funcionalidade sem transformar cada pasta em um pequeno framework.",
     likes: 12,
+    replies: [
+      {
+        id: "comment-1-reply-1",
+        author: "Equipe Ateliux",
+        avatar: "/avatars/team.svg",
+        publishedAt: "há 12 minutos",
+        content:
+          "Esse é exatamente o objetivo: criar previsibilidade sem adicionar abstrações que não tragam ganho real para o produto.",
+        likes: 7,
+        official: true,
+      },
+    ],
   },
   {
     id: "comment-2",
-    author: "Rafael Mendes",
-    avatar: "/avatars/noah.svg",
+    author: "Usuário Ateliux 02",
+    avatar: "/avatars/user-02.svg",
     publishedAt: "há 42 minutos",
     content:
       "Gostei da ideia de tratar o backend como fonte oficial dos dados. Isso evita que o frontend acumule regras que depois ficam difíceis de sincronizar com o painel administrativo.",
@@ -21,7 +34,7 @@ const sharedComments = [
   },
 ];
 
-export const forumArticles: ForumArticle[] = [
+const coreArticles: ForumArticle[] = [
   {
     slug: "arquitetura-nextjs-escalavel",
     kind: "Artigo",
@@ -32,7 +45,8 @@ export const forumArticles: ForumArticle[] = [
     author: {
       name: "Equipe Ateliux",
       role: "Engenharia de Produto",
-      avatar: "/avatars/sarah.svg",
+      avatar: "/avatars/team.svg",
+      official: true,
     },
     publishedAt: "24 de julho de 2026",
     updatedAt: "24 de julho de 2026",
@@ -66,7 +80,7 @@ export const forumArticles: ForumArticle[] = [
         title: "Mantenha o backend como fonte oficial dos dados",
         paragraphs: [
           "O frontend deve apresentar estados e interações, mas não assumir sozinho decisões que pertencem ao domínio. Permissões, publicação, moderação, autoria e status de uma discussão devem ser validados pelo backend.",
-          "Essa separação permite que o frontend público e o painel administrativo consumam a mesma regra. Também reduz divergências quando novas permissões, categorias privadas ou fluxos de aprovação forem adicionados.",
+          "Essa separação permite que o frontend público e o painel administrativo consumam a mesma regra e reduz divergências quando novas permissões ou fluxos de aprovação forem adicionados.",
         ],
       },
     ],
@@ -100,7 +114,8 @@ export const forumArticles: ForumArticle[] = [
     author: {
       name: "Equipe Ateliux",
       role: "Backend e Infraestrutura",
-      avatar: "/avatars/mike.svg",
+      avatar: "/avatars/team.svg",
+      official: true,
     },
     publishedAt: "23 de julho de 2026",
     updatedAt: "24 de julho de 2026",
@@ -117,8 +132,8 @@ export const forumArticles: ForumArticle[] = [
         eyebrow: "01 — Domínio",
         title: "Módulos devem representar capacidades do produto",
         paragraphs: [
-          "Em vez de criar módulos genéricos demais, prefira nomes que expressem o domínio: discussions, comments, moderation, notifications e users. Isso aproxima a estrutura técnica da linguagem utilizada pelo produto.",
-          "Controllers recebem a entrada, services coordenam regras e repositories ou serviços de persistência isolam o acesso ao Prisma quando a complexidade justificar essa divisão.",
+          "Em vez de criar módulos genéricos demais, prefira nomes que expressem o domínio: discussions, comments, moderation, notifications e users.",
+          "Controllers recebem a entrada, services coordenam regras e a persistência permanece isolada da interface pública.",
         ],
         bullets: [
           "DTOs validam entradas e saídas;",
@@ -132,7 +147,7 @@ export const forumArticles: ForumArticle[] = [
         eyebrow: "02 — Banco",
         title: "Modele estados importantes de forma explícita",
         paragraphs: [
-          "Uma discussão pode ser rascunho, pendente, publicada, fechada ou arquivada. Esses estados devem existir no modelo e nas regras do backend, evitando inferências frágeis feitas apenas pela interface.",
+          "Uma discussão pode ser rascunho, pendente, publicada, fechada ou arquivada. Esses estados devem existir no modelo e nas regras do backend.",
           "O mesmo princípio vale para papéis, permissões, denúncias e histórico de moderação.",
         ],
       },
@@ -140,11 +155,10 @@ export const forumArticles: ForumArticle[] = [
     codeExample: {
       id: "codigo",
       title: "Serviço de publicação com regra explícita",
-      description:
-        "O backend valida a transição antes de persistir o novo estado da discussão.",
+      description: "O backend valida a transição antes de persistir o novo estado da discussão.",
       language: "typescript",
       filename: "discussions.service.ts",
-      code: `async publish(id: string, actorId: string) {\n  const discussion = await this.findOwnedDraft(id, actorId);\n\n  return this.prisma.discussion.update({\n    where: { id: discussion.id },\n    data: {\n      status: 'PUBLISHED',\n      publishedAt: new Date(),\n    },\n  });\n}`,
+      code: `async publish(id: string, actorId: string) {\n  const discussion = await this.findOwnedDraft(id, actorId);\n\n  return this.prisma.discussion.update({\n    where: { id: discussion.id },\n    data: { status: 'PUBLISHED', publishedAt: new Date() },\n  });\n}`,
     },
     insight: {
       id: "insight",
@@ -164,17 +178,13 @@ export const forumArticles: ForumArticle[] = [
     description:
       "Uma visão prática sobre automação, contexto, ferramentas e os limites necessários para transformar IA em uma capacidade confiável do produto.",
     categoryId: "ai",
-    author: {
-      name: "Equipe Ateliux",
-      role: "IA e Automação",
-      avatar: "/avatars/simon.svg",
-    },
+    author: { name: "Equipe Ateliux", role: "IA e Automação", avatar: "/avatars/team.svg", official: true },
     publishedAt: "22 de julho de 2026",
     updatedAt: "22 de julho de 2026",
     readingTime: "7 min",
     difficulty: "Iniciante",
     views: 764,
-    commentsCount: 4,
+    commentsCount: 14,
     tags: ["IA", "Agentes", "Automação", "Produto"],
     lead:
       "Um agente de IA gera valor quando recebe um objetivo claro, contexto suficiente, ferramentas limitadas e critérios objetivos para decidir quando agir, perguntar ou parar.",
@@ -184,7 +194,7 @@ export const forumArticles: ForumArticle[] = [
         eyebrow: "01 — Aplicação",
         title: "Comece por tarefas repetitivas com resultado verificável",
         paragraphs: [
-          "Resumos, classificação, extração de dados e preparação de rascunhos costumam ser bons pontos de entrada. Nesses cenários, o resultado pode ser comparado com critérios claros antes de afetar uma operação importante.",
+          "Resumos, classificação, extração de dados e preparação de rascunhos costumam ser bons pontos de entrada.",
           "Quanto maior a autonomia, maior deve ser a observabilidade: logs, histórico de decisões, limites de ação e aprovação humana para etapas sensíveis.",
         ],
         bullets: [
@@ -200,18 +210,16 @@ export const forumArticles: ForumArticle[] = [
         title: "Autonomia sem rastreabilidade cria risco",
         paragraphs: [
           "O usuário precisa entender o que o agente fez e por quê. Uma boa experiência permite revisar ações, desfazer alterações e identificar claramente quando uma resposta foi produzida por IA.",
-          "A confiança cresce quando o sistema comunica seus limites em vez de esconder incertezas.",
         ],
       },
     ],
     codeExample: {
       id: "codigo",
       title: "Contrato mínimo para uma execução",
-      description:
-        "Uma execução rastreável registra objetivo, ferramentas permitidas e resultado final.",
+      description: "Uma execução rastreável registra objetivo, ferramentas permitidas e resultado final.",
       language: "typescript",
       filename: "agent-run.ts",
-      code: `type AgentRun = {\n  objective: string;\n  allowedTools: string[];\n  requiresApproval: boolean;\n  status: 'queued' | 'running' | 'completed' | 'failed';\n  output?: unknown;\n};`,
+      code: `type AgentRun = {\n  objective: string;\n  allowedTools: string[];\n  requiresApproval: boolean;\n  status: 'queued' | 'running' | 'completed' | 'failed';\n};`,
     },
     insight: {
       id: "insight",
@@ -231,11 +239,7 @@ export const forumArticles: ForumArticle[] = [
     description:
       "Sinais de que a interface precisa deixar de ser um conjunto de telas isoladas e começar a operar como um sistema visual compartilhado.",
     categoryId: "design",
-    author: {
-      name: "Equipe Ateliux",
-      role: "Design de Produto",
-      avatar: "/avatars/lena.svg",
-    },
+    author: { name: "Equipe Ateliux", role: "Design de Produto", avatar: "/avatars/team.svg", official: true },
     publishedAt: "21 de julho de 2026",
     updatedAt: "21 de julho de 2026",
     readingTime: "6 min",
@@ -254,13 +258,7 @@ export const forumArticles: ForumArticle[] = [
           "Botões semelhantes com alturas diferentes, espaçamentos decididos em cada tela e estados de formulário que mudam entre módulos indicam que a interface já precisa de regras compartilhadas.",
           "O primeiro passo não é criar uma biblioteca enorme. É documentar tokens, componentes fundamentais e padrões que aparecem com maior frequência.",
         ],
-        bullets: [
-          "cores e tipografia;",
-          "espaçamento e grid;",
-          "botões e campos;",
-          "feedback, estados vazios e carregamento;",
-          "regras de acessibilidade.",
-        ],
+        bullets: ["cores e tipografia;", "espaçamento e grid;", "botões e campos;", "feedback e carregamento;", "regras de acessibilidade."],
       },
       {
         id: "fluxo",
@@ -268,15 +266,13 @@ export const forumArticles: ForumArticle[] = [
         title: "O sistema deve acompanhar o produto",
         paragraphs: [
           "Um design system não é um projeto paralelo congelado. Cada nova necessidade real pode gerar uma melhoria no componente ou uma nova variação documentada.",
-          "Design e desenvolvimento precisam compartilhar o mesmo vocabulário para evitar divergência entre o arquivo de design e o código em produção.",
         ],
       },
     ],
     codeExample: {
       id: "codigo",
       title: "Tokens simples como ponto de partida",
-      description:
-        "Mesmo uma base pequena já reduz decisões repetidas e ajuda a manter consistência.",
+      description: "Mesmo uma base pequena já reduz decisões repetidas e ajuda a manter consistência.",
       language: "css",
       filename: "tokens.css",
       code: `:root {\n  --space-2: 0.5rem;\n  --space-4: 1rem;\n  --radius-control: 0.5rem;\n  --color-text: #1f2933;\n  --color-accent: #45b8ef;\n}`,
@@ -293,6 +289,74 @@ export const forumArticles: ForumArticle[] = [
     comments: sharedComments,
   },
 ];
+
+function createFallbackArticle(slug: string): ForumArticle | undefined {
+  const discussion = forumDiscussions.find((item) => item.id === slug);
+  if (!discussion) return undefined;
+
+  const category = getCategoryById(discussion.categoryId);
+
+  return {
+    slug: discussion.id,
+    kind: discussion.status === "resolved" ? "Discussão" : "Artigo",
+    title: discussion.title,
+    description: discussion.excerpt,
+    categoryId: discussion.categoryId,
+    author: {
+      name: "Equipe Ateliux",
+      role: category?.label ?? "Equipe oficial",
+      avatar: "/avatars/team.svg",
+      official: true,
+    },
+    publishedAt: "2 de setembro de 2026",
+    updatedAt: "3 de setembro de 2026",
+    readingTime: "6 min",
+    difficulty: "Intermediário",
+    views: discussion.views,
+    commentsCount: discussion.comments,
+    tags: discussion.tags,
+    lead: discussion.excerpt,
+    sections: [
+      {
+        id: "artigo",
+        eyebrow: "01 — Contexto",
+        title: "Partindo do problema real antes de escolher a solução",
+        paragraphs: [
+          "A melhor decisão técnica começa pelo comportamento que precisa ser garantido no produto. Ferramentas e padrões entram depois, como meios para manter essa regra compreensível e sustentável.",
+          "Nesta discussão, a Equipe Ateliux organiza os pontos que normalmente merecem validação antes de transformar uma solução pontual em um padrão permanente de projeto.",
+        ],
+        bullets: [
+          "defina o comportamento esperado;",
+          "identifique as regras que precisam ser protegidas;",
+          "separe o que pertence ao frontend e ao backend;",
+          "mantenha estados e falhas visíveis para a equipe.",
+        ],
+      },
+      {
+        id: "fluxo",
+        eyebrow: "02 — Prática",
+        title: "Valide com um fluxo pequeno antes de generalizar",
+        paragraphs: [
+          "Uma implementação pequena e observável costuma revelar mais do que uma abstração criada cedo demais. Depois de validar o comportamento, o padrão pode ser extraído com muito mais segurança.",
+        ],
+      },
+    ],
+    insight: {
+      id: "insight",
+      eyebrow: "Insight Ateliux",
+      title: "Padrões devem nascer de problemas recorrentes",
+      description:
+        "Uma abstração útil elimina repetição real. Se ela ainda precisa justificar a própria existência, talvez seja cedo para torná-la parte da arquitetura.",
+    },
+    discussionQuestion: "Como você resolveria esse cenário em um projeto real?",
+    comments: discussion.status === "resolved" ? sharedComments.map((comment, index) => index === 0 ? { ...comment, accepted: true } : comment) : sharedComments,
+    status: discussion.status,
+  };
+}
+
+export const forumArticles = forumDiscussions
+  .map((discussion) => coreArticles.find((article) => article.slug === discussion.id) ?? createFallbackArticle(discussion.id))
+  .filter((article): article is ForumArticle => Boolean(article));
 
 export function getForumArticleBySlug(slug: string) {
   return forumArticles.find((article) => article.slug === slug);

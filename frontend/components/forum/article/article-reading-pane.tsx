@@ -26,7 +26,7 @@ export function ArticleReadingPane({ children }: ArticleReadingPaneProps) {
 
   return (
     <section className="min-w-0 bg-[#f6f6f3]" style={readingStyle}>
-      <div className="sticky top-0 z-20 flex min-h-[64px] items-center justify-between gap-5 border-b border-[#ddddda] bg-[#f6f6f3]/95 px-8 backdrop-blur-sm max-md:flex-wrap max-md:px-5 max-md:py-3">
+      <div className="sticky top-[82px] z-20 flex min-h-[64px] items-center justify-between gap-5 border-b border-[#ddddda] bg-[#f6f6f3]/95 px-8 backdrop-blur-sm max-md:flex-wrap max-md:px-5 max-md:py-3">
         <div className="flex items-center gap-1 text-[10px] font-medium text-[#596169]">
           <span className="mr-2 uppercase tracking-[0.13em] text-[#969c9f]">Leitura</span>
           <button

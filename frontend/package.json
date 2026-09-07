@@ -1,12 +1,15 @@
 {
   "name": "ateliux-forum-frontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "validate:names": "node scripts/validate-names.mjs",
+    "validate": "npm run typecheck && npm run lint && npm run build && npm run validate:names"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

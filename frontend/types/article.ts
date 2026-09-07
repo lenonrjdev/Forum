@@ -31,11 +31,14 @@ export type ArticleComment = {
   publishedAt: string;
   content: string;
   likes: number;
+  official?: boolean;
+  accepted?: boolean;
+  replies?: ArticleComment[];
 };
 
 export type ForumArticle = {
   slug: string;
-  kind: "Artigo" | "Insight" | "Tutorial";
+  kind: "Artigo" | "Insight" | "Tutorial" | "Discussão";
   title: string;
   description: string;
   categoryId: ForumCategory["id"];
@@ -43,6 +46,7 @@ export type ForumArticle = {
     name: string;
     role: string;
     avatar: string;
+    official?: boolean;
   };
   publishedAt: string;
   updatedAt: string;
@@ -53,8 +57,9 @@ export type ForumArticle = {
   tags: string[];
   lead: string;
   sections: ArticleBodySection[];
-  codeExample: ArticleCodeExample;
-  insight: ArticleInsight;
+  codeExample?: ArticleCodeExample;
+  insight?: ArticleInsight;
   discussionQuestion: string;
   comments: ArticleComment[];
+  status?: "open" | "resolved" | "closed";
 };
